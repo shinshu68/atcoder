@@ -101,7 +101,7 @@ ll lcm(ll a, ll b) {
 }
 
 int main() {
-	cin.tie(0);
+	cin.tie(nullptr);
 	ios::sync_with_stdio(false);
 
 
