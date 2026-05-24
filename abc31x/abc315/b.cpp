@@ -104,43 +104,25 @@ int main() {
 	cin.tie(nullptr);
 	ios::sync_with_stdio(false);
 
-	int n;
-	cin >> n;
-	vector<pair<int, vector<int>>> ca(n);
-	rep(i, n) {
-		int c;
-		cin >> c;
-		vi a(c);
-		rep(j, c) {
-			cin >> a[j];
-		}
-		ca[i] = make_pair(i + 1, a);
+	int m;
+	cin >> m;
+	vi d(m);
+	int sumD = 0;
+	rep(i, m) {
+		cin >> d[i];
+		sumD += d[i];
 	}
-	int x;
-	cin >> x;
-	vi ans;
-	int maxAns = INF;
-	rep(i, n) {
-		auto a = ca[i].second;
-		if (find(all(a), x) != a.end()) {
-			if (a.size() == maxAns) {
-				ans.push_back(ca[i].first);
-			} else if (a.size() < maxAns) {
-				ans = {};
-				ans.push_back(ca[i].first);
-				maxAns = a.size();
-			}
+	int h = (sumD + 1) / 2;
+	sumD = 0;
+	rep(i, m) {
+		sumD += d[i];
+		if (sumD >= h) {
+			sumD -= d[i];
+			cout << i + 1 << ' ' << h - sumD << endl;
+			return 0;
 		}
-	}
 
-	cout << ans.size() << endl;
-	rep(i, ans.size()) {
-		if (i != 0) {
-			cout << ' ';
-		}
-		cout << ans[i];
 	}
-	cout << endl;
 
 	return 0;
 }
